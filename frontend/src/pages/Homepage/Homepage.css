@@ -1,0 +1,9 @@
+.homepage{
+    padding:50px;
+}
+
+.homepage__header{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}

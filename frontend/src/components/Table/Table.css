@@ -1,0 +1,14 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th,td{
+
+    border: 1px solid rgb(34,37,49);
+    padding: 20px;
+}
+.table__actions{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}

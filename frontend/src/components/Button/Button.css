@@ -1,0 +1,28 @@
+.btn{
+    padding: 12px 40px 12px 40px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #fff !important;
+    color: #000 !important;
+    border:1px solid #000 !important
+}
+
+.btn.btn-primary{
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+}
+.btn.btn-white{
+    border: 1px solid #191A20;;
+    background-color: transparent;
+    color: #000;
+}
+.btn.btn-dark{
+    border: 0;
+    background-color: #191A20;
+    color: #fff;
+}
