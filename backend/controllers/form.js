@@ -1,10 +1,24 @@
 const Form = require('../models/forms');
 
 exports.getPosts = (req, res, next) =>{
+    const currentPage = req.query.page || 1;
+    const perPage = 5;
+    let totalItems;
 
-    Form.find().then(forms =>{
-        res.status(201).json([...forms])
-    }) 
+    Form.find().countDocuments().then(count =>{
+        totalItems = count;
+        return Form.find().skip((currentPage-1) * perPage).limit(perPage)
+    }).then(forms =>{
+        res.status(201).json({formItems:forms, totalItems: totalItems, perPage: perPage})
+    }).catch(err =>{
+        if(!err.statusCode){
+            err.statusCode = 500;
+        }
+        throw error
+    })
+    
+
+    console.log(currentPage);
 }
 
 exports.addPost = (req,res,next) =>{
@@ -23,7 +37,10 @@ exports.addPost = (req,res,next) =>{
             form:result
         })
     }).catch(err =>{
-        console.log(err)
+        if(!err.statusCode){
+            err.statusCode = 500;
+        }
+        throw err
     })
 
 }   
@@ -36,7 +53,10 @@ exports.getForm = (req,res,next) =>{
         }
         res.status(200).json({form});
     }).catch(err =>{
-        console.log('ERROR')
+        if(!err.statusCode){
+            err.statusCode = 500;
+        }
+        throw err
     })
 }
 
@@ -57,7 +77,10 @@ exports.updateForm = (req, res,next) =>{
     }).then(result =>{
         res.json({message: 'UPDATED FORM', result:result})
     }).catch(err =>{
-        console.log(err)
+        if(!err.statusCode){
+            err.statusCode = 500;
+        }
+        throw err
     }) 
 }
 
@@ -73,7 +96,10 @@ exports.deleteForm = (req, res, next) =>{
     }).then((result) =>{
         res.json({message:'DELETED FORM'})
     }).catch(err =>{
-        console.log(err)
+        if(!err.statusCode){
+            err.statusCode = 500;
+        }
+        throw err
     })
 
 }

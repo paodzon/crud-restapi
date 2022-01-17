@@ -1,12 +1,14 @@
 const INITIAL_STATE = {
     formList: [],
-    selectedForm: []
+    totalItems:0,
+    perPage:0,
+    selectedForm: [],
 }
 
 const formReducer =(state =INITIAL_STATE, action) =>{
     switch(action.type){
         case 'GET_FORMS':
-            return {...state, formList:action.payload}
+            return {...state, formList:[...action.payload.formItems], totalItems:action.payload.totalItems, perPage:action.payload.perPage}
         case 'ADD_FORM':
             return {...state, formList:[...state.formList, action.payload]}
         case 'EDIT_FORM':

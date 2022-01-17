@@ -42,8 +42,8 @@ export const deleteForm = (id) => async(dispatch) =>{
     })
 }
 
-export const getForms = () => async (dispatch) => {
-  const response = await fetch("http://localhost:8080/forms/posts")
+export const getForms = (page) => async (dispatch) => {
+  const response = await fetch(`http://localhost:8080/forms/posts/?page=${page}`)
     .then((res) => res.json())
     .then((resData) => resData)
     .catch((err) => console.log(err));
