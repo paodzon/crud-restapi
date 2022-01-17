@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Table from '../../components/Table/Table';
 import Modal from '../../components/Modal/Modal';
 import './Homepage.css';
-import Form from '../../components/Form/Form';
+import AddForm from '../../components/Form/AddForm';
 import Button from '../../components/Button/Button';
-
+import EditForm from '../../components/Form/EditForm';
+import { useDispatch } from 'react-redux';
+import { getForms } from '../../actions';
 const Homepage = () => {
 
     const [addModal, setAddModal] =useState(false);
     const [editModal, setEditModal] =useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() =>{
+        dispatch(getForms());
+    },[])
 
     return (
         <div className='homepage'>
@@ -21,10 +28,10 @@ const Homepage = () => {
             
             <Table openModal={() =>setEditModal(true)}/>
             <Modal isOpen={addModal} onClose={() =>setAddModal(false)} title='Add Form'>
-                <Form/>
+                <AddForm/>
             </Modal>
             <Modal isOpen={editModal} onClose={() =>setEditModal(false)} title='Edit Form'>
-                <Form/>
+                <EditForm/>
             </Modal>
         </div>
     )

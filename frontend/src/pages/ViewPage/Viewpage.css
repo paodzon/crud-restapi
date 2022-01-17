@@ -1,0 +1,18 @@
+.viewpage{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    
+}
+
+.viewpage__container{
+    border: 1px solid rgb(34,37,49);
+    border-radius: 10px;
+    padding: 50px;
+    min-width: 700px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 40px;
+}

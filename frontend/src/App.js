@@ -11,8 +11,6 @@ import Viewpage from './pages/ViewPage/Viewpage';
 
 const App = () => {
 
-
-
     return (
         <div className='app'>
             <div className='app__header'>
@@ -22,7 +20,7 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Homepage/>}/>
-                    <Route path='/view' element={<Viewpage/>} />
+                    <Route path='/view/:id' element={<Viewpage/>} />
                 </Routes>
             </BrowserRouter>
             </div>

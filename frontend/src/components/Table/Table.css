@@ -12,3 +12,7 @@ th,td{
     justify-content: center;
     gap: 30px;
 }
+table a{
+    color: #fff !important;
+    display: contents;
+}
