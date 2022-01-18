@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import { getForm, clearForm } from '../../actions';
+import { getForm, clearForm } from '../../actions/formActions';
 import './Viewpage.css';
 
 const Viewpage = () => {

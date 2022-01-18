@@ -12,7 +12,9 @@ th,td{
     justify-content: center;
     gap: 30px;
 }
-table a{
-    color: #fff !important;
-    display: contents;
+tr td:nth-child(1){
+    cursor: pointer;
+}
+tr td:nth-child(2){
+    cursor: pointer;
 }

@@ -2,7 +2,7 @@ const Form = require('../models/forms');
 
 exports.getPosts = (req, res, next) =>{
     const currentPage = req.query.page || 1;
-    const perPage = 5;
+    const perPage = 10;
     let totalItems;
 
     Form.find().countDocuments().then(count =>{
@@ -17,8 +17,6 @@ exports.getPosts = (req, res, next) =>{
         throw error
     })
     
-
-    console.log(currentPage);
 }
 
 exports.addPost = (req,res,next) =>{

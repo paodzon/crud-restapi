@@ -5,3 +5,10 @@ nav{
     padding: 20px 40px 20px 40px;
     background-color: #17171A;
 }
+.nav__right{
+    display: flex;
+
+}.nav__nouser{
+    display: flex;
+    gap:20px
+}

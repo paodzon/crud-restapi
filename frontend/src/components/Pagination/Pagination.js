@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import Button from '../Button/Button';
 import './Pagination.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getForms } from '../../actions';
+import { getForms } from '../../actions/formActions';
 const Pagination = (props) => {
     const {pageCount, pageCounter} = props;
     const dispatch = useDispatch();

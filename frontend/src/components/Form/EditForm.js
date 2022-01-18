@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Button from '../Button/Button';
 import { useSelector, useDispatch} from 'react-redux'; 
-import { editForm } from '../../actions';
+import { editForm } from '../../actions/formActions';
 import './Form.css';
 
-const EditForm = () => {
+const EditForm = ({onClose}) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -21,6 +21,7 @@ const EditForm = () => {
      const onSubmitForm = (e) =>{
         e.preventDefault();
         dispatch(editForm({_id:data._id,title:title, content:content}))
+        onClose()
     }
 
     

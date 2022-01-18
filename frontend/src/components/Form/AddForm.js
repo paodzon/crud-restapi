@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import Button from '../Button/Button';
 import { useDispatch } from 'react-redux';
-import { addForm } from '../../actions';
+import { addForm } from '../../actions/formActions';
 import './Form.css';
 
-const AddForm = () => {
+const AddForm = ({onClose}) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -14,7 +14,7 @@ const AddForm = () => {
     const onSubmitForm = (e) =>{
         e.preventDefault();
         dispatch(addForm({title:title, content:content}));
-        console.log({title:title, content:content})
+        onClose()
     }
 
     return (

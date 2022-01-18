@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from '../Button/Button';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { useSelector,useDispatch} from 'react-redux';
-import { getForm, deleteForm } from '../../actions';
+import { getForm, deleteForm } from '../../actions/formActions';
 import './Table.css'
 
 const Table = (props) => {
 
     const data = useSelector((state) => state?.form.formList);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const {openModal} =props;
     const renderData = () => {
@@ -21,11 +22,9 @@ const Table = (props) => {
       return data.map((item, i) => {
         return (
           
-            <tr key={i}>
-              <Link to={`/view/${item._id}`} >
-              <td>{item.title}</td>
-              <td>{item.content}</td>
-              </Link>
+            <tr key={item._id}>
+              <td onClick={() =>{navigate(`/view/${item._id}`)}}>{item.title}</td>
+              <td onClick={() =>{navigate(`/view/${item._id}`)}}>{item.content}</td>
               <td className="table__actions" onClick={() =>dispatch(getForm(item._id))}>
                 <Button
                   name="Edit"

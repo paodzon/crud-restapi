@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser =require('body-parser');
 const formRoutes = require('./routes/formRoutes');
+const authRoutes = require('./routes/authRoutes');
 const mongoose = require('mongoose');
 const app = express();
 
@@ -12,13 +13,14 @@ app.use((req,res,next) =>{
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type , Authorization');
     next();
 })
-app.use('/forms', formRoutes)
+app.use('/forms', formRoutes);
+app.use('/auth', authRoutes);
 
 app.use((error, req,res,next) =>{
     console.log(error);
     const status = error.statusCode;
     const message = error.message;
-    res.status(status).json({message: message});
+    res.status(status).json({error: message});
 })
 
 mongoose

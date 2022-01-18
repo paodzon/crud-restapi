@@ -6,13 +6,13 @@ import AddForm from '../../components/Form/AddForm';
 import Button from '../../components/Button/Button';
 import EditForm from '../../components/Form/EditForm';
 import { useDispatch } from 'react-redux';
-import { getForms } from '../../actions';
+import { getForms } from '../../actions/formActions';
 import Pagination from '../../components/Pagination/Pagination';
 const Homepage = () => {
 
     const [addModal, setAddModal] =useState(false);
     const [editModal, setEditModal] =useState(false);
-    const [pageCount, setPageCount] =useState(null || 1);
+    const [pageCount, setPageCount] =useState(1);
     const dispatch = useDispatch();
 
     useEffect(() =>{
@@ -42,10 +42,10 @@ const Homepage = () => {
             <Table openModal={() =>setEditModal(true)}/>
             <Pagination pageCount={pageCount} pageCounter={pageCounter}/>
             <Modal isOpen={addModal} onClose={() =>setAddModal(false)} title='Add Form'>
-                <AddForm/>
+                <AddForm onClose={() =>setAddModal(false)}/>
             </Modal>
             <Modal isOpen={editModal} onClose={() =>setEditModal(false)} title='Edit Form'>
-                <EditForm/>
+                <EditForm onClose={() =>setEditModal(false)}/>
             </Modal>
         </div>
     )

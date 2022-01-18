@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
     BrowserRouter,
     Routes,
@@ -8,8 +8,14 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Homepage from './pages/Homepage/Homepage';
 import Viewpage from './pages/ViewPage/Viewpage';
-
+import { useDispatch } from 'react-redux';
+import { checkUser } from './actions/authActions';
 const App = () => {
+
+    const dispatch = useDispatch();
+    useEffect(() =>{
+        dispatch(checkUser());
+    },[dispatch])
 
     return (
         <div className='app'>
