@@ -1,4 +1,5 @@
 const Form = require('../models/forms');
+const User = require('../models/user');
 
 exports.getPosts = (req, res, next) =>{
     const currentPage = req.query.page || 1;
@@ -26,21 +27,29 @@ exports.addPost = (req,res,next) =>{
     const form = new Form({
         title: title,
         content: content,
-        creator:{name:"PAO"}
+        creator:req.userId
     })
 
+    
     form.save().then(result =>{
+        return User.findById(req.userId);
+    }).then(user =>{
+        creator = user;
+        user.posts.push(form);
+        return user.save()
+    }).then(result=>{
         res.status(201).json({
             message:'SUCCESSFULLY ADDED FORM',
-            form:result
-        })
+            form:result,
+            creator:{_id:creator._id, name: creator.name}
+        });
     }).catch(err =>{
         if(!err.statusCode){
             err.statusCode = 500;
         }
         throw err
     })
-
+    
 }   
 
 exports.getForm = (req,res,next) =>{
@@ -89,9 +98,13 @@ exports.deleteForm = (req, res, next) =>{
         if(!form){
             console.log('NO FORM FOUND');
         }
-
         return Form.findByIdAndDelete(postid)
     }).then((result) =>{
+        return User.findById(req.userId)
+    }).then(user =>{
+        user.posts.pull(postid);
+        return user.save()
+    }).then(result =>{
         res.json({message:'DELETED FORM'})
     }).catch(err =>{
         if(!err.statusCode){
@@ -99,5 +112,5 @@ exports.deleteForm = (req, res, next) =>{
         }
         throw err
     })
-
+    
 }
