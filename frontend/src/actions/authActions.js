@@ -1,3 +1,4 @@
+
 export const signUp = (userDetails) => async(dispatch) =>{
     fetch('http://localhost:8080/auth/signup',{
         method:'POST',
@@ -37,6 +38,7 @@ export const login = (userDetails) => async(dispatch) =>{
        })
        localStorage.setItem('token', data.token);
        localStorage.setItem('userId', data.userId);
+       
     }).catch(err =>{
         dispatch({
             type:'AUTH_ERROR',
@@ -45,14 +47,14 @@ export const login = (userDetails) => async(dispatch) =>{
     })
 }
 
-export const checkUser = () =>{
+export const checkUser = () => (dispatch) =>{
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     if(token && userId){
-        return{
+        dispatch({
             type:'LOGIN_USER',
             payload: {token: token, userId: userId}
-        }
+        })
     }
 }
 

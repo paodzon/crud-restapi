@@ -6,7 +6,7 @@ import AddForm from '../../components/Form/AddForm';
 import Button from '../../components/Button/Button';
 import EditForm from '../../components/Form/EditForm';
 import { useDispatch } from 'react-redux';
-import { getForms } from '../../actions/formActions';
+import { getForms} from '../../actions/formActions';
 import Pagination from '../../components/Pagination/Pagination';
 const Homepage = () => {
 

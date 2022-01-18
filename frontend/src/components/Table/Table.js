@@ -8,6 +8,7 @@ import './Table.css'
 const Table = (props) => {
 
     const data = useSelector((state) => state?.form.formList);
+    const userAuth  = useSelector((state) => state?.auth.userDetails.userId);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -25,14 +26,17 @@ const Table = (props) => {
             <tr key={item._id}>
               <td onClick={() =>{navigate(`/view/${item._id}`)}}>{item.title}</td>
               <td onClick={() =>{navigate(`/view/${item._id}`)}}>{item.content}</td>
-              <td className="table__actions" onClick={() =>dispatch(getForm(item._id))}>
-                <Button
+              
+                {(item.creator === userAuth)? <td className="table__actions" onClick={() =>dispatch(getForm(item._id))}>
+                  <Button
                   name="Edit"
                   style="btn-primary"
                   onClickBtn={openModal}
                 />
                 <Button name="Delete" style="btn-primary" onClickBtn={() => dispatch(deleteForm(item._id))}/>
-              </td>
+                </td>:<td></td>}
+
+              
             </tr>
           
         );
